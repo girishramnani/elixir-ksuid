@@ -2,13 +2,21 @@
 
 ksuid is a Elixir library that can generate KSUIDs.
 
+## How To
+
+```elixir
+iex> Ksuid.generate()
+"KZi94b2fnVzpGi60FoZgXIvUtYy"
+```
+
+
 ## TODO
 
-[X] Generate KSUID
-[ ] Parsing KSUIDS
-[ ] Decode BASE62 method
-[ ] Write tests
-[ ] Write Documentation
+- [x] Generate KSUID
+- [ ] Parsing KSUIDS
+- [ ] Decode BASE62 method
+- [ ] Write tests
+- [ ] Write Documentation
 
 ## Installation
 
