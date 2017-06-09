@@ -1,4 +1,4 @@
-# Ksuid
+# Ksuid [![Build Status](https://travis-ci.org/girishramnani/elixir-ksuid.svg?branch=master)](https://travis-ci.org/girishramnani/elixir-ksuid)
 
 ksuid is a zero dependency Elixir library for generating and parsing KSUIDs.
 
