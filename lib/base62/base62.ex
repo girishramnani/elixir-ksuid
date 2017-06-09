@@ -1,16 +1,11 @@
 defmodule Base62 do
 
 
-    @chars "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    @chars "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" |> String.graphemes
 
-    defp generate_cache(type) do
-         char_list = String.graphemes(@chars)
+    @decode_chars @chars |> Enum.with_index |> Map.new
+    @encode_chars @chars |> List.to_tuple
 
-        case type do
-            :encode -> List.to_tuple(char_list)
-            :decode -> char_list |> Enum.with_index |> Map.new
-        end
-    end
 
     def bin_to_integer(bin) do
             list_of_bytes = for << byte::8 <- bin >>, do: byte 
@@ -28,7 +23,7 @@ defmodule Base62 do
 
 
     def encode(integer_data) when is_integer(integer_data) do
-        cache = generate_cache(:encode)
+        cache = @encode_chars
         
         integer_data 
         |> Integer.digits(62) # get mod 62 numbers into a list
@@ -37,7 +32,7 @@ defmodule Base62 do
     end
 
     def decode!(string_data) when is_binary(string_data) do
-        cache = generate_cache(:decode)
+        cache = @decode_chars
 
         string_data
         |> String.graphemes
