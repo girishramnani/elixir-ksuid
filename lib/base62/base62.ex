@@ -11,13 +11,18 @@ defmodule Base62 do
             :decode -> char_list |> Enum.with_index |> Map.new
         end
     end
+
+    def bin_to_integer(bin) do
+            list_of_bytes = for << byte::8 <- bin >>, do: byte 
+
+            list_of_bytes 
+            |> Integer.undigits(256)
+    end
   
     def encode(byte_data) when is_bitstring(byte_data) do
         
-        list_of_bytes = for << byte::8 <- byte_data >>, do: byte 
-        
-        list_of_bytes 
-        |> Integer.undigits(256) # convert it into an integer
+        byte_data
+        |> bin_to_integer # convert it into an integer
         |> encode # uses the integer version of encode now
     end
 
@@ -31,13 +36,16 @@ defmodule Base62 do
         |> Enum.into("")
     end
 
-    # TODO
     def decode!(string_data) when is_binary(string_data) do
-    
-    end
+        cache = generate_cache(:decode)
 
-    # TODO
-    def decode(string_data) when is_binary(string_data) do
+        string_data
+        |> String.graphemes
+        |> Enum.map(fn char -> cache[char] end)
+        |> Integer.undigits(62)
+        |> Integer.digits(256)
+        |> Enum.reduce(<<>>,fn(number,acc) -> acc <> <<number>> end )
         
     end
+
 end
