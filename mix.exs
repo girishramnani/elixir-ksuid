@@ -7,7 +7,14 @@ defmodule Ksuid.Mixfile do
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: description(),
      deps: deps()]
+  end
+
+  def description do
+    """
+    ksuid is a zero dependency Elixir library for generating KSUIDs. 
+    """
   end
 
   def application do
@@ -16,5 +23,15 @@ defmodule Ksuid.Mixfile do
   end
 
   defp deps do
+  end
+
+  defp package do
+    [
+     name: :ksuid,
+     files: ["lib", "mix.exs", "README*", "LICENSE*"],
+     maintainers: ["Girish Ramnani"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/girishramnani/elixir-ksuid" }
+    ]
   end
 end
