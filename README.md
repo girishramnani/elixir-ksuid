@@ -81,7 +81,18 @@ defmodule TestSchema do
   
 end
 ```
+#### Migration
+Create `:id` as `:bytea`, and primary key - similary to usage with `:binary_id`
 
+```elixir
+  def change do
+     create table(:test, primary_key: false) do
+      add :id, :bytea, primary_key: true
+      add :name, :text
+     
+    end
+  end
+```
 
 ## TODO
 
