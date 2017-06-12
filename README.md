@@ -28,8 +28,8 @@ iex> Ksuid.parse("p9kxW1vWavpdq7VSgbv8piY0nr")
 ```elixir
 defmodule EctoKsuid do
   @behaviour Ecto.Type
-  # uses bytearray as postgres type.
-  def type, do: :bytea
+  # uses string/varchar as storage type.
+  def type, do: :string
 
   def cast(ksuid) when is_binary(ksuid), do: {:ok, ksuid}
   def cast(_), do: :error
@@ -44,13 +44,9 @@ defmodule EctoKsuid do
     end
   end
 
-  def load(ksuid) do
-    {:ok, ksuid}
-  end
-
+  def load(ksuid), do: {:ok, ksuid}
   
   def dump(binary) when is_binary(binary), do: {:ok, binary}
-
   def dump(_), do: :error
 
   # Callback invoked by autogenerate fields - this is all that really matters
