@@ -102,7 +102,7 @@ Create `:id` as `:bytea`, and primary key - similary to usage with `:binary_id`
 
 ```elixir
 def deps do
-  [{:ksuid, "~> 0.1.0"}]
+  [{:ksuid, "~> 0.1.2"}]
 end
 ```
 
