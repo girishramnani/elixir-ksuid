@@ -81,6 +81,12 @@ defmodule Base62Test do
         assert encode("Naruto") == "OTFo3nDT"
         assert encode("The quick brown fox jumps over the lazy dog") == "83UM8dOjD4xrzASgmqLOXTgTagvV1jPegUJ39mcYnwHwTlzpdfKXvpp4RL"
     end
+
+    test "encoded output length is more than original string" do
+        input = "microservices"
+        encoded_input = encode(input)
+        assert String.length(input) < String.length(encoded_input)
+    end
     
     test "encode and decode" do
         assert decode!(encode("Hello world!")) == "Hello world!"

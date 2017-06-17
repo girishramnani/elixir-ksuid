@@ -9,9 +9,9 @@ Read more about ksuid [here](https://segment.com/blog/a-brief-history-of-the-uui
 ```elixir
 
 iex> Ksuid.generate()
-"p9kxW1vWavpdq7VSgbv8piY0nr"
+"0p9kxW1vWavpdq7VSgbv8piY0nr"
 
-iex> Ksuid.parse("p9kxW1vWavpdq7VSgbv8piY0nr")
+iex> Ksuid.parse("0p9kxW1vWavpdq7VSgbv8piY0nr")
 {
   :ok,
   %DateTime{calendar: Calendar.ISO, day: 9, hour: 14, microsecond: {0, 0},
