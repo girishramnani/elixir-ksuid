@@ -4,7 +4,7 @@ defmodule Ksuid do
   IDs which are partially chronologically sortable.
   """
 
-  
+
   @epoch 1400000000
   @payload_length  16
   @ksuid_raw_length 20
@@ -12,10 +12,10 @@ defmodule Ksuid do
   @parse_error "the value given is more than the max Ksuid value possible"
 
   defp get_ts() do
-    ts = System.system_time(:second) - @epoch 
+    ts = System.system_time(:microsecond) - @epoch
     <<ts::integer-size(32)>>  # length of the time stamp is 32 bits
-  end  
-  
+  end
+
   defp get_bytes() do
     :crypto.strong_rand_bytes(@payload_length)
   end
@@ -30,13 +30,13 @@ defmodule Ksuid do
       "0KZi94b2fnVzpGi60FoZgXIvUtYy"
 
   """
-  
+
   def generate() do
     kuid_as_bytes = get_ts() <> get_bytes()
-    
-    kuid_as_bytes 
+
+    kuid_as_bytes
     |> Base62.encode()
-    |> apply_padding(<<48>>,@ksuid_encoded_length) # <<48>> is zero on decoding 
+    |> apply_padding(<<48>>,@ksuid_encoded_length) # <<48>> is zero on decoding
 
 
   end
@@ -68,7 +68,7 @@ defmodule Ksuid do
   end
 
   defp normalize(<<ts::32,rand_bytes::bits>>) do
-    case DateTime.from_unix(ts + @epoch)  do
+    case DateTime.from_unix(ts + @epoch, :microsecond)  do
        {:ok , time } -> {:ok ,time , rand_bytes}
         {:error, reason } -> {:error, reason }
     end
