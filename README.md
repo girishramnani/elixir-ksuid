@@ -4,6 +4,14 @@ ksuid is a zero dependency Elixir library for generating and parsing KSUIDs.
 
 Read more about ksuid [here](https://segment.com/blog/a-brief-history-of-the-uuid/)
 
+## Installation
+
+```elixir
+def deps do
+  [{:ksuid, "~> 0.1.2"}]
+end
+```
+
 ## How To
 
 ```elixir
@@ -98,13 +106,6 @@ Create `:id` as `:bytea`, and primary key - similary to usage with `:binary_id`
 - [x] Write tests
 - [ ] Write Documentation
 
-## Installation
-
-```elixir
-def deps do
-  [{:ksuid, "~> 0.1.2"}]
-end
-```
 
 ## Credit
 
