@@ -2,14 +2,16 @@ defmodule Ksuid.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :ksuid,
-     version: "0.1.2",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     description: description(),
-     package: package(),
-     deps: deps()]
+    [
+      app: :ksuid,
+      version: "0.1.2",
+      elixir: "~> 1.4",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      description: description(),
+      package: package(),
+      deps: deps()
+    ]
   end
 
   def description do
@@ -29,11 +31,11 @@ defmodule Ksuid.Mixfile do
 
   defp package do
     [
-     name: :ksuid,
-     files: ["lib", "mix.exs", "README*", "LICENSE*"],
-     maintainers: ["Girish Ramnani"],
-     licenses: ["MIT"],
-     links: %{"GitHub" => "https://github.com/girishramnani/elixir-ksuid" }
+      name: :ksuid,
+      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      maintainers: ["Girish Ramnani"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/girishramnani/elixir-ksuid"}
     ]
   end
 end
